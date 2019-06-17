@@ -23,12 +23,11 @@ export class AppComponent {
   initializeApp() {
     this.platform.ready().then(() => {
       this.storage.get('introShown').then((result) => {
-        console.log(result);
-        if (!result) {
-          this.navCtrl.navigateRoot('intro');
+        // if (!result) {
+          // this.navCtrl.navigateRoot('intro');
           // this.storage.set('introShown', true);
-        }
-      })
+        // }
+      });
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
