@@ -1,0 +1,3 @@
+# Encounter
+
+Count your encouters
