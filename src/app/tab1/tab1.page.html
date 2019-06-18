@@ -1,61 +1,90 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Daily Counter
+      EnCounter
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-card class="welcome-card">
-    <ion-img src="/assets/shapes.svg"></ion-img>
+    <ion-img [src]="currentImage"></ion-img>
     <ion-card-header>
       <!-- <ion-card-subtitle></ion-card-subtitle> -->
       <ion-card-title>Quote of the day</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <p>It is not about who you meet, it is about who you talk to.</p>
+      <p>{{currentQuote}}</p>
     </ion-card-content>
   </ion-card>
-  <ion-card>
+  <ion-card class="challenge-card" *ngIf="!completeChallenges">
     <ion-card-header>
-      <ion-card-title>Challenge 1</ion-card-title>
+      <ion-card-title class="white-font">Challenge {{currentChallengeNumber}}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <h2>Meet 2 new people</h2>
-      <h3>Each new interaction should be started differently</h3>
+      <h2 class="white-font">{{currentChallenge.subtitle}}</h2>
+      <h3 class="white-font">{{currentChallenge.description}}</h3>
     </ion-card-content>
   </ion-card>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>New people</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <div style="display: flex;">
-        <ion-card>
-          <ion-card-content>
-            <h1>0</h1>
-          </ion-card-content>
-        </ion-card>
-        <ion-button color="primary" style="margin-left: auto;">+</ion-button>
-        <ion-button color="secondary">-</ion-button>
-      </div>
-    </ion-card-content>
+  <ion-card class="complete-challenges-card" *ngIf="completeChallenges">
+      <ion-card-header>
+        <ion-card-title class="white-font">Congratulations!</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <h2 class="white-font">You have completed all challenges!</h2>
+        <h3 class="white-font">Check the app for updates. New challenges are comming up!</h3>
+      </ion-card-content>
   </ion-card>
-  <ion-card>
+  <ion-card class="new-people-card">
     <ion-card-header>
-      <ion-card-title>New people 2</ion-card-title>
+      <ion-card-title class="white-font">New People</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <div style="display: flex;">
-        <ion-card>
-          <ion-card-content>
-            <h1>1</h1>
-          </ion-card-content>
-        </ion-card>
-        <ion-button color="primary" style="margin-left: auto;">+</ion-button>
-        <ion-button color="secondary">-</ion-button>
+        <h1 class="white-font">0</h1>
+        <ion-button class="change-button" fill="clear" style="margin-left: auto; color: #fbfbfb;"><ion-icon name="add"></ion-icon></ion-button>
+        <ion-button class="change-button" fill="clear" style="color:#fbfbfb;"><ion-icon name="remove"></ion-icon></ion-button>
       </div>
+      <ion-icon (click)="showInfo('New People','Keep track of how many new people you met during the day.')" name="help-circle"></ion-icon>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="connections-card">
+    <ion-card-header>
+      <ion-card-title class="white-font">Connections</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div style="display: flex;">
+        <h1 class="white-font">1</h1>
+        <ion-button class="change-button" fill="clear" style="margin-left: auto; color:#fbfbfb;"><ion-icon name="add"></ion-icon></ion-button>
+        <ion-button class="change-button" fill="clear" style="color: #fbfbfb;"><ion-icon name="remove"></ion-icon></ion-button>
+      </div>
+      <ion-icon (click)="showInfo('Social Connections','Used for counting how many social connections you were able to get during the day.')" name="help-circle"></ion-icon>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="men-card">
+    <ion-card-header>
+      <ion-card-title class="white-font">Men</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div style="display: flex;">
+        <h1 class="white-font">1</h1>
+        <ion-button class="change-button" fill="clear" style="margin-left: auto; color:#fbfbfb;"><ion-icon name="add"></ion-icon></ion-button>
+        <ion-button class="change-button" fill="clear" style="color: #fbfbfb;"><ion-icon name="remove"></ion-icon></ion-button>
+      </div>
+      <ion-icon (click)="showInfo('№ of Men','you have talked to ( could be new encounters, friends or collagues )')" name="help-circle"></ion-icon>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="women-card">
+    <ion-card-header>
+      <ion-card-title class="white-font">Women</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div style="display: flex;">
+        <h1 class="white-font">1</h1>
+        <ion-button class="change-button" fill="clear" style="margin-left: auto; color:#fbfbfb;"><ion-icon name="add"></ion-icon></ion-button>
+        <ion-button class="change-button" fill="clear" style="color: #fbfbfb;"><ion-icon name="remove"></ion-icon></ion-button>
+      </div>
+      <ion-icon (click)="showInfo('№ of Women','you have talked to ( could be new encounters, friends or collagues )')" name="help-circle"></ion-icon>
     </ion-card-content>
   </ion-card>
 </ion-content>

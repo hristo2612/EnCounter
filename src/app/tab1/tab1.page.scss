@@ -2,3 +2,45 @@
   max-height: 35vh;
   overflow: hidden;
 }
+
+.change-button {
+  --color-activated: #fbfbfb;
+  --color-focused: #fbfbfb;
+  --border-radius: 42%;
+}
+
+*[name="help-circle"] {
+  position: absolute;
+  top: -39px;
+  color: #fbfbfb !important;
+  right: 20px;
+  font-size: 20px;
+}
+
+.white-font {
+  color: #fbfbfb;
+}
+
+.challenge-card {
+  background: #FF8800;
+}
+
+.complete-challenges-card {
+  background: #00695c;
+}
+
+.new-people-card {
+  background: #33b5e5;
+}
+
+.connections-card {
+  background: #00C851;
+}
+
+.men-card {
+  background: #4285F4;
+}
+
+.women-card {
+  background: #aa66cc;
+}

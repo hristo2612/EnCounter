@@ -1,5 +1,7 @@
 {
   "name": "MeetCounter",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
