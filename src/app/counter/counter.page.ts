@@ -6,9 +6,9 @@ import { challenges } from '../shared/challenges';
 import { AlertController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 @Component({
-  selector: 'app-tab1',
-  templateUrl: 'tab1.page.html',
-  styleUrls: ['tab1.page.scss']
+  selector: 'app-counter',
+  templateUrl: 'counter.page.html',
+  styleUrls: ['counter.page.scss']
 })
 export class CounterPage implements OnInit {
 

@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CounterPage } from './counter.page';
 
-describe('Tab1Page', () => {
+describe('CounterPage', () => {
   let component: CounterPage;
   let fixture: ComponentFixture<CounterPage>;
 
