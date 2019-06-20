@@ -10,14 +10,14 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss']
 })
-export class Tab1Page implements OnInit {
+export class CounterPage implements OnInit {
 
   quotes: any[] = [];
   images: any[] = [];
   challenges: any[] = [];
   currentDay;
   currentQuote = '';
-  currentImage = '';
+  currentImage = '/assets/background.jpeg';
   currentChallengeNumber = 1;
   currentChallenge: any = { subscribe: '', description: '' };
   completeChallenges = false;
@@ -48,8 +48,6 @@ export class Tab1Page implements OnInit {
     this.http.get(this.images[this.currentDay - 1], { responseType: 'blob' }).subscribe((res) => {
       if (res.type === 'image/jpeg') {
         this.currentImage = this.images[this.currentDay - 1];
-      } else {
-        this.currentImage = '/assets/background.jpeg';
       }
     });
   }
