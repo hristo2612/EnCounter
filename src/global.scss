@@ -9,7 +9,21 @@
 @import '~@ionic/angular/css/text-alignment.css';
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
+// FONTS
+@import url('https://fonts.googleapis.com/css?family=Mali&display=swap');
 
 .swiper-pagination-bullet {
   background: white !important;
+}
+
+.nice-font {
+  font-family: 'Mali', cursive;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.dark-blue {
+  color: #0090eade;
 }
