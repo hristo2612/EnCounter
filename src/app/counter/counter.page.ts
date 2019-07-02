@@ -21,21 +21,35 @@ export class CounterPage implements OnInit {
   currentChallengeNumber = 1;
   currentChallenge: any = { subscribe: '', description: '' };
   completeChallenges = false;
+  counters = {
+    people: {},
+    connections: {},
+    men: {},
+    women: {}
+  };
+  fullDate: string;
+  animationGoing = false;
 
   constructor(private storage: Storage, private alertCtrl: AlertController, private http: HttpClient) {
 
   }
 
   ngOnInit() {
+    const date = new Date();
+    this.fullDate = date.getDate() + '-' + date.getMonth() + '-' + date.getFullYear();
     this.currentDay = new Date().getDate();
+    this.quickSetup();
+    this.setCounters();
     this.setQuote();
     this.setImage();
     this.setChallenge();
-    this.storage.get('counters').then((counters) => {
-      if (counters) {
-        console.log(counters);
-      }
-    });
+  }
+
+  quickSetup() {
+    this.counters.people[this.fullDate] = 0;
+    this.counters.connections[this.fullDate] = 0;
+    this.counters.men[this.fullDate] = 0;
+    this.counters.women[this.fullDate] = 0;
   }
 
   setQuote() {
@@ -83,6 +97,57 @@ export class CounterPage implements OnInit {
 
   showInfo(header, message) {
     this.presentAlert(header, message);
+  }
+
+  setCounters() {
+    this.storage.get('counters').then((counters) => {
+      if (counters) {
+        console.log(counters);
+        this.counters = counters;
+        if ((!counters.people[this.fullDate] ||
+          !counters.connections[this.fullDate] ||
+          !counters.men[this.fullDate] ||
+          !counters.women[this.fullDate]
+          ) &&
+          (counters.people[this.fullDate] !== 0 &&
+          counters.connections[this.fullDate] !== 0 &&
+          counters.men[this.fullDate] !== 0 &&
+          counters.women[this.fullDate] !== 0)) {
+            this.quickSetup();
+            this.storage.set('counters', this.counters);
+        }
+      } else {
+        this.storage.set('counters', this.counters);
+      }
+    });
+  }
+
+  increaseValue(type) {
+    this.changeValue(type, 1);
+    this.changeValue('connections', 1);
+    if (!this.animationGoing) {
+      this.animationGoing = true;
+      document.querySelector('.connection-number').classList.toggle('pulse');
+      document.querySelector('.connection-title').classList.toggle('enlarge');
+      setTimeout(() => {
+        this.animationGoing = false;
+        document.querySelector('.connection-number').classList.toggle('pulse');
+        document.querySelector('.connection-title').classList.toggle('enlarge');
+      }, 805);
+    }
+  }
+
+  decreaseValue(type) {
+    this.changeValue(type, -1);
+    this.changeValue('connections', -1);
+  }
+
+  changeValue(type, increment) {
+    if (this.counters[type][this.fullDate] === 0 && increment === -1) {
+      return;
+    }
+    this.counters[type][this.fullDate] += increment;
+    this.storage.set('counters', this.counters);
   }
 
   async presentAlert(header, message) {
