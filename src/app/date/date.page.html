@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-buttons slot="start" >
+        <ion-back-button (click)="goBack()" class="show-back-button"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Pick a time</ion-label>
+    <ion-datetime display-format="HH:mm" (ionChange)="onChanged($event)" value="13:20"></ion-datetime>
+  </ion-item>
+  <ion-fab-button (click)="addTime()" style="position: absolute; bottom: 26px; right: 26px;" color="success"><ion-icon name="time"></ion-icon></ion-fab-button>
+</ion-content>
