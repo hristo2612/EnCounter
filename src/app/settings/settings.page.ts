@@ -37,7 +37,8 @@ export class SettingsPage implements OnInit, OnDestroy {
   }
 
   deleteReminder(index) {
-    this.localNotifications.clear(Number(this.reminders[index].time.split(':').join('')));
+    const id = Number(this.reminders[index].time.split(':').join(''));
+    this.localNotifications.clear(id);
     this.reminders.splice(index, 1);
     this.storage.set('reminders', this.reminders);
   }
@@ -50,9 +51,11 @@ export class SettingsPage implements OnInit, OnDestroy {
     if (!event.detail.checked) {
       this.reminders.forEach((r) => {
         if (r.time === time) {
+          r.checked = false;
           this.localNotifications.clear(Number(r.time.split(':').join('')));
         }
       });
+      this.storage.set('reminders', this.reminders);
     }
   }
 }
