@@ -14,3 +14,4 @@ Set reminders in the form of notifications</p>
 
 <p style="text-align: center;">If you are trying to run this app locally, you need a lower version of Node.js like v14 since most of the dependecies in the project are outdated.</p>
 
+
